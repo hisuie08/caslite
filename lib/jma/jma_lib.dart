@@ -1,6 +1,5 @@
 library jma_lib;
 
-export 'src/area.dart';
 export 'src/areas/region.dart';
 export 'src/areas/prefectures.dart';
 export 'src/areas/city.dart';
