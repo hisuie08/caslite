@@ -2,7 +2,7 @@ import 'package:caslite/caslite.dart';
 import 'package:caslite/pages/locale.dart';
 import 'package:caslite/pages/setting.dart';
 import 'package:caslite/providers/bookmarks_provider.dart';
-import 'package:caslite/widgets/bookmarks.dart';
+import 'package:caslite/parts/bookmarks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,6 @@ class CasliteDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bookmarks = ref.watch(bookMarksProvider);
     final show = ref.watch(showBookmarkProvider);
-
     return Drawer(
         child: Column(children: [
       CasliteDrawerHeader(),
@@ -76,7 +75,7 @@ class CasliteDrawerHeader extends StatelessWidget {
 class NavItemWidget extends StatelessWidget {
   final String title;
   final Icon icon;
-  final Function onTap;
+  final void Function() onTap;
   const NavItemWidget(this.title, this.icon, this.onTap, {super.key});
 
   @override
@@ -84,6 +83,6 @@ class NavItemWidget extends StatelessWidget {
     return ListTile(
         leading: icon,
         title: Text(title, style: Theme.of(context).textTheme.titleLarge),
-        onTap: () => onTap);
+        onTap: onTap);
   }
 }

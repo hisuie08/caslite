@@ -1,5 +1,6 @@
 import 'package:caslite/caslite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,9 @@ void main() async {
     ),
   );
   await SharedPreferencesInstance.initialize();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await AppInfo.engage();
   runApp(ProviderScope(
     child: const CasliteApp(),
   ));
@@ -46,6 +50,5 @@ class SharedPreferencesInstance {
 
   static initialize() async {
     _pref = await SharedPreferences.getInstance();
-    await AppInfo.engage();
   }
 }

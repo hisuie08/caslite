@@ -1,8 +1,8 @@
+import 'package:caslite/jma/jma_lib.dart';
 import 'package:caslite/pages/weather.dart';
 import 'package:caslite/providers/bookmarks_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jma_lib/jma_lib.dart';
 
 class BookMarkItem extends ConsumerWidget {
   final BookMark bm;
