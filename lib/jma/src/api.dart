@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:caslite/jma/jma_lib.dart';
+
 import '../src/amedas.dart';
-import '../src/areas/city.dart';
 import 'package:http/http.dart' as http;
-import '../src/forecast.dart';
-import '../src/overview.dart';
-import '../src/utils.dart';
 
 class ForecastResult extends Forecast {
   final City city;
@@ -28,29 +26,25 @@ class ForecastResult extends Forecast {
 }
 
 class CityForAPI extends City {
-  String? altAmedas;
-  final List<Week> weeks;
-  CityForAPI(this.weeks, this.altAmedas,
+  String? altAmedas = null;
+  late List<Week> weeks;
+  CityForAPI(
       {required super.id,
       required super.name,
       required super.kana,
       required super.prefecture,
       required super.officeCode,
-      required super.region,
-      required super.srf});
-  factory CityForAPI.copyWith(City city, List<Week> weeks,
-          {String? altAmedas}) =>
-      CityForAPI(
-        weeks,
-        altAmedas,
-        id: city.id,
-        name: city.name,
-        kana: city.kana,
-        prefecture: city.prefecture,
-        officecode: city.officeCode,
-        region: city.region,
-        srf: city.srf,
-      );
+      required super.srf}) {
+    weeks = Week.getWeeks(srf);
+  }
+  factory CityForAPI.copyWith(City city, {String? altAmedas}) => CityForAPI(
+      id: city.id,
+      name: city.name,
+      kana: city.kana,
+      prefecture: city.prefecture,
+      officeCode: city.officeCode,
+      srf: city.srf);
+  CityForAPI setAltAmedas(String amedas) => this..altAmedas = amedas;
 }
 
 class JMA {
@@ -63,17 +57,7 @@ class JMA {
   // ignore: library_private_types_in_public_api
   late CityForAPI city;
   JMA(City city, {String? altAmedas}) {
-    final List<Week> cWeeks = [];
-    final s2ws = Srf2Week.all.where((s2w) => s2w.srf == city.srf).toList();
-    for (var s in s2ws) {
-      for (var w in Week.all) {
-        if (w.id == s.week) {
-          cWeeks.add(w);
-          break;
-        }
-      }
-    }
-    this.city = CityForAPI.copyWith(city, cWeeks);
+    this.city = CityForAPI.copyWith(city);
   }
   Future<OverView> getOverview() async {
     final path = "$epOverview${city.officeCode}.json";

@@ -17,6 +17,7 @@ void main() async {
     ),
   );
   await SharedPreferencesInstance.initialize();
+  await AppInfo.engage();
   runApp(ProviderScope(
     child: const CasliteApp(),
   ));
@@ -46,6 +47,5 @@ class SharedPreferencesInstance {
 
   static initialize() async {
     _pref = await SharedPreferences.getInstance();
-    await AppInfo.engage();
   }
 }

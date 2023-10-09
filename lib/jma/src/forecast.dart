@@ -201,7 +201,7 @@ dynamic findArea(dynamic obj, CityForAPI city) {
 dynamic findWeekWeather(dynamic obj, CityForAPI city) {
   for (var week in city.weeks) {
     for (var area in obj["areas"]) {
-      if (area["area"]["code"] == week.id) {
+      if (area["area"]["code"] == week.week) {
         return area;
       }
     }

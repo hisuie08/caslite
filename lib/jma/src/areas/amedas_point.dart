@@ -1,7 +1,12 @@
 class AmedasPoint {
+  // 短期天気予報用Amedas地点
   final String srf;
   final List<String> amedas;
   const AmedasPoint({required this.srf, required this.amedas});
+  static List<String> getAmedas(String srf) => _amedas
+      .firstWhere((element) => element.srf == srf,
+          orElse: () => throw ArgumentError("Invalid argument $srf"))
+      .amedas;
 }
 
 const _amedas = [

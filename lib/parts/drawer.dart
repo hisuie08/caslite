@@ -2,7 +2,7 @@ import 'package:caslite/caslite.dart';
 import 'package:caslite/pages/locale.dart';
 import 'package:caslite/pages/setting.dart';
 import 'package:caslite/providers/bookmarks_provider.dart';
-import 'package:caslite/widgets/bookmarks.dart';
+import 'package:caslite/parts/bookmarks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:caslite/jma/jma_lib.dart';
 
-import '../widgets/drawer.dart';
+import '../parts/drawer.dart';
 
 class SearchNotifier extends StateNotifier<List<City>> {
   SearchNotifier() : super(City.all);
