@@ -5,8 +5,9 @@ import 'package:caslite/parts/common_widgets.dart';
 import 'package:caslite/parts/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:caslite/jma/jma_lib.dart';
+import 'package:vector_graphics/vector_graphics.dart';
 
 class PageWeather extends BaseConsumerPage {
   final City city;
@@ -117,10 +118,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(children: [
-                  SvgPicture.network(
-                    today.weather.getImageLink(isDay: isDay),
-                    width: 100,
-                  ),
+                  WeatherIconWidget.get(today.weather, isDay),
                   Text(today.weather.label, style: textTheme.titleLarge)
                 ]),
                 Column(
@@ -132,7 +130,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                         Text(" ℃", style: textTheme.bodyLarge)
                       ]),
                       Row(children: [
-                        Tooltip(
+                        const Tooltip(
                           child: Icon(Icons.water_drop_outlined),
                           message: "湿度",
                         ),
@@ -298,8 +296,7 @@ class WeekForecastWidget extends StatelessWidget {
               forecast.dateTime,
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            SvgPicture.network(forecast.weather.getImageLink(isDay: isDay),
-                width: 100),
+            WeatherIconWidget.get(forecast.weather, isDay),
             Text(forecast.weather.label, style: textTheme.titleLarge),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -316,5 +313,19 @@ class WeekForecastWidget extends StatelessWidget {
             Text(pop, style: textTheme.titleLarge),
           ]).setPadding(padding: const EdgeInsets.fromLTRB(16, 8, 16, 8)),
         ));
+  }
+}
+
+class WeatherIconWidget extends StatelessWidget {
+  factory WeatherIconWidget.get(Weather weather, bool isDay) {
+    final code = isDay ? weather.dayIcon : weather.nightIcon;
+    return WeatherIconWidget(code);
+  }
+  final String code;
+  const WeatherIconWidget(this.code);
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture(AssetBytesLoader("assets/weather_icons/${code}.svg.vec"),
+        width: 100);
   }
 }
