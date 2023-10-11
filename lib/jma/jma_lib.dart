@@ -8,5 +8,5 @@ export 'src/api.dart';
 export 'src/forecast.dart';
 export 'src/overview.dart';
 export 'src/utils.dart';
-export 'src/areas/amedas_point.dart';
+export 'src/areas/srf_amedas.dart';
 export 'src/areas/week.dart';
