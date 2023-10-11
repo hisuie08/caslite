@@ -7,9 +7,6 @@ final class Weather {
   final String label;
   const Weather(this.id, this.dayIcon, this.nightIcon, this.label);
   factory Weather.fromId(String id) => _weathers.singleWhere((w) => w.id == id);
-  Weather updateLabel(String newLabel) {
-    return Weather(id, dayIcon, nightIcon, newLabel);
-  }
 
   String getImageLink({bool isDay = true}) {
     final icon = switch (isDay) {
