@@ -41,9 +41,7 @@ class PageWeather extends BaseConsumerPage {
                     ]),
                     onTap: () {
                       ref.watch(bookMarksProvider.notifier).removeId(city.id);
-                    },
-                  ),
-            PopupMenuItem(child: Row(children: [Icon(Icons.alt_route)]))
+                    })
           ];
         }),
       ],

@@ -1,3 +1,6 @@
+import 'package:caslite/jma/jma_lib.dart';
+import 'package:caslite/jma/src/areas/amedas_points.dart';
+
 class City {
   final String id;
   final String name;
@@ -14,6 +17,7 @@ class City {
       required this.srf});
   static List<City> get all => _cities;
   static City getById(id) => _cities.where((element) => element.id == id).first;
+  List<AmedasPoint> get availableAmedas => Srf2Amedas.getAmedas(srf);
 }
 
 final List<City> _cities = [

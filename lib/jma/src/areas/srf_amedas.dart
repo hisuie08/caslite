@@ -1,12 +1,17 @@
+import 'package:caslite/jma/src/areas/amedas_points.dart';
+
 class Srf2Amedas {
   // 短期天気予報用Amedas地点
   final String srf;
   final List<String> amedas;
   const Srf2Amedas({required this.srf, required this.amedas});
-  static List<String> getAmedas(String srf) => _amedas
-      .firstWhere((element) => element.srf == srf,
-          orElse: () => throw ArgumentError("Invalid argument $srf"))
-      .amedas;
+  static List<AmedasPoint> getAmedas(String srf) {
+    final amedasList = _amedas
+        .firstWhere((element) => element.srf == srf,
+            orElse: () => throw ArgumentError("Invalid argument $srf"))
+        .amedas;
+    return [for (var id in amedasList) AmedasPoint.getById(id)];
+  }
 }
 
 const _amedas = [
