@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:caslite/jma/jma_lib.dart';
-import 'package:vector_graphics/vector_graphics.dart';
+import 'package:vector_graphics/vector_graphics_compat.dart';
 
 class PageWeather extends BaseConsumerPage {
   final City city;
@@ -42,7 +42,8 @@ class PageWeather extends BaseConsumerPage {
                     onTap: () {
                       ref.watch(bookMarksProvider.notifier).removeId(city.id);
                     },
-                  )
+                  ),
+            PopupMenuItem(child: Row(children: [Icon(Icons.alt_route)]))
           ];
         }),
       ],
@@ -325,7 +326,7 @@ class WeatherIconWidget extends StatelessWidget {
   const WeatherIconWidget(this.code);
   @override
   Widget build(BuildContext context) {
-    return SvgPicture(AssetBytesLoader("assets/weather_icons/${code}.svg.vec"),
+    return SvgPicture(AssetBytesLoader("assets/weather_icons/$code.svg.vec"),
         width: 100);
   }
 }

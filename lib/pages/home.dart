@@ -39,7 +39,6 @@ class Home extends BaseConsumerPage {
 class HomeWeather extends ConsumerWidget {
   final City city;
   const HomeWeather(this.city, {super.key});
-  Future _future(City city) async => JMA(city).get();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

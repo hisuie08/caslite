@@ -20,7 +20,7 @@ dependencies:
   shared_preferences: ^2.2.1
   package_info: ^2.0.2
   path_provider:
-  vector_graphics_compiler: ^1.1.7
+  vector_graphics: ^1.1.9
 
 dev_dependencies:
   flutter_test:
@@ -39,8 +39,8 @@ flutter:
 
   uses-material-design: true
 
-assets:
-  - weather_icons/
+  assets:
+    - assets/weather_icons/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
