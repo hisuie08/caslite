@@ -16,6 +16,7 @@ class Forecast {
   }
 
   List<DayForecast> parseSrf(Map<String, dynamic> _j) {
+    //Todo : implement
     final amedasCode = _jma.altAmedas ?? _jma.city.amedasList.first.id;
     final json = _j[0]["timeSeries"]; //直近予報
     final List<DayForecast> result = [];
