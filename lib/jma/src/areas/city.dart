@@ -1,5 +1,5 @@
 import 'package:caslite/jma/jma_lib.dart';
-import 'package:caslite/jma/src/areas/amedas_points.dart';
+import 'package:caslite/jma/src/areas/srf_amedas.dart';
 
 class City {
   final String id;

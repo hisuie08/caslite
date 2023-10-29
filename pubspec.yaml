@@ -21,6 +21,7 @@ dependencies:
   package_info: ^2.0.2
   path_provider:
   vector_graphics: ^1.1.9
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

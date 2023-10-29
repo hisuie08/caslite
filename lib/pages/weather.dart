@@ -98,8 +98,8 @@ class CurrentWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final isDay = result.reportDatetime.hour >= 17;
-    final today = result.weekForecasts.first as DayForecast;
+    final isDay = result.forecast.reportDateTime.hour >= 17;
+    final today = result.forecast.weekForecast.first;
     final card = Card(
         margin: const EdgeInsets.all(8),
         child: Column(
@@ -109,7 +109,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                   "${today.dateTime.month}/${today.dateTime.day}(${_weekDays[today.dateTime.weekday - 1]})",
                   style: textTheme.titleLarge),
               Text(
-                result.publishingOffice,
+                result.forecast.publishingOffice,
                 style: textTheme.labelLarge,
               )
             ]),
@@ -148,7 +148,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                 children: [
                   Column(children: [
                     Text("降水確率(%)", style: textTheme.labelLarge),
-                    Text(today.pop, style: textTheme.titleLarge)
+                    Text(today.pop.toString(), style: textTheme.titleLarge)
                   ]),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -189,7 +189,7 @@ class OverViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final today = result.weekForecasts.first;
+    final today = result.forecast.weekForecast.first;
 
     return GestureDetector(
         onTap: () {
@@ -198,33 +198,31 @@ class OverViewWidget extends StatelessWidget {
             builder: (_) => AlertDialog(
                 title: Column(children: [
                   Text(
-                    result.publishingOffice,
+                    result.forecast.publishingOffice,
                     textAlign: TextAlign.center,
                   )
                 ]),
                 scrollable: true,
                 content: Container(
                   child: Column(children: [
-                    if (today is DayForecast)
-                      Column(children: [
+                    Column(children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Icon(Icons.wind_power), Text("風")]),
+                      Text("${today.wind}").setPadding(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8)),
+                      if (today.wave != null)
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.wind_power), Text("風")]),
-                        Text("${today.wind}").setPadding(
-                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8)),
-                        if (today.wave != null)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.sailing), Text("波")],
-                          ),
-                        if (today.wave != null)
-                          Text("${today.wave!}",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyLarge)
-                              .setPadding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8, 0, 8, 8))
-                      ]),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Icon(Icons.sailing), Text("波")],
+                        ),
+                      if (today.wave != null)
+                        Text("${today.wave!}",
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.bodyLarge)
+                            .setPadding(
+                                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8))
+                    ]),
                     Text(result.overView.text,
                             style: Theme.of(context).textTheme.bodyLarge)
                         .setPadding(
@@ -237,11 +235,10 @@ class OverViewWidget extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             shadowColor: Colors.transparent,
             child: Column(children: [
-              if (today is DayForecast)
-                Text("風　${today.wind}",
-                        style: Theme.of(context).textTheme.bodyLarge)
-                    .setPadding(padding: const EdgeInsets.fromLTRB(8, 0, 8, 0)),
-              if (today is DayForecast && today.wave != null)
+              Text("風　${today.wind}",
+                      style: Theme.of(context).textTheme.bodyLarge)
+                  .setPadding(padding: const EdgeInsets.fromLTRB(8, 0, 8, 0)),
+              if (today.wave != null)
                 Text(("波　${today.wave}"),
                         style: Theme.of(context).textTheme.bodyLarge)
                     .setPadding(padding: const EdgeInsets.fromLTRB(8, 0, 8, 0)),
@@ -261,7 +258,7 @@ class WeekForecastWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = [];
-    for (var forecast in result.weekForecasts) {
+    for (var forecast in result.forecast.weekForecast) {
       children.add(weekForecastTile(context, forecast));
     }
     return SizedBox(
@@ -276,17 +273,12 @@ class WeekForecastWidget extends StatelessWidget {
 
   Widget weekForecastTile(
     BuildContext context,
-    IDayForecast forecast,
+    DayForecast forecast,
   ) {
     final textTheme = Theme.of(context).textTheme;
     final isDay = forecast.dateTime.hour != 17;
     String pop = "--";
-    if (forecast is DayForecast) {
-      pop = forecast.pop;
-    }
-    if (forecast is WeekForecast) {
-      pop = forecast.pop;
-    }
+    pop = forecast.pop.toString();
     return FittedBox(
         fit: BoxFit.contain,
         child: Card(
@@ -300,10 +292,10 @@ class WeekForecastWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(forecast.tempH,
+                Text(forecast.tempMax.toString(),
                     style: textTheme.titleLarge?.copyWith(color: Colors.red)),
                 Text(" / ", style: textTheme.titleLarge),
-                Text(forecast.tempL,
+                Text(forecast.tempMin.toString(),
                     style: textTheme.titleLarge?.copyWith(color: Colors.blue))
               ],
             ),
