@@ -1,11 +1,13 @@
 class Region {
   final String id;
   final String name;
-  Region(this.id, this.name);
+  const Region(this.id, this.name);
   static List<Region> get all => _regions;
+  static Region getById(id) =>
+      _regions.singleWhere((element) => element.id == id);
 }
 
-final List<Region> _regions = [
+const List<Region> _regions = [
   Region('010100', '北海道地方'),
   Region('010200', '東北地方'),
   Region('010300', '関東甲信地方'),

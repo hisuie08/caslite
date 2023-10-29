@@ -2,13 +2,13 @@ class Prefecture {
   final String id;
   final String name;
   final String region;
-  Prefecture(this.id, this.name, this.region);
+  const Prefecture(this.id, this.name, this.region);
   static List<Prefecture> get all => _prefectures;
   static Prefecture getById(id) =>
       _prefectures.singleWhere((element) => element.id == id);
 }
 
-final List<Prefecture> _prefectures = [
+const List<Prefecture> _prefectures = [
   Prefecture('01', '北海道', '010100'),
   Prefecture('02', '青森県', '010200'),
   Prefecture('03', '岩手県', '010200'),

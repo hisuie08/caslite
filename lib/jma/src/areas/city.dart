@@ -16,11 +16,12 @@ class City {
       required this.officeCode,
       required this.srf});
   static List<City> get all => _cities;
-  static City getById(id) => _cities.where((element) => element.id == id).first;
-  List<AmedasPoint> get availableAmedas => Srf2Amedas.getAmedas(srf);
+  static City getById(id) => _cities.singleWhere((element) => element.id == id);
+  List<AmedasPoint> get amedasList => Srf2Amedas.getAmedas(srf);
+  List<Week> get weekList => Week.getWeeks(srf);
 }
 
-final List<City> _cities = [
+const List<City> _cities = [
   City(
       id: '0110000',
       name: '札幌市',

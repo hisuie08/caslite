@@ -1,4 +1,4 @@
-final class AmedasPoint {
+class AmedasPoint {
   final String id;
   final String name;
   final String type;
@@ -16,7 +16,7 @@ final class AmedasPoint {
       required this.elems});
 
   static AmedasPoint getById(String id) =>
-      _amedas_points.where((element) => element.id == id).first;
+      _amedas_points.singleWhere((element) => element.id == id);
 }
 
 const _amedas_points = [
