@@ -2,14 +2,11 @@ import 'package:caslite/caslite.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final key = "20231029122000";
-  final time = DateFormat("yyyyMMddHHmm00").parse(key);
 // ignore: missing_provider_scope
   runApp(
     const MaterialApp(
