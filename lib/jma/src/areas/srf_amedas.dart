@@ -6,10 +6,8 @@ class Srf2Amedas {
   final List<String> amedas;
   const Srf2Amedas({required this.srf, required this.amedas});
   static List<AmedasPoint> getAmedas(String srf) {
-    final amedasList = _amedas
-        .firstWhere((element) => element.srf == srf,
-            orElse: () => throw ArgumentError("Invalid argument $srf"))
-        .amedas;
+    final amedasList =
+        _amedas.singleWhere((element) => element.srf == srf).amedas;
     return [for (var id in amedasList) AmedasPoint.getById(id)];
   }
 }

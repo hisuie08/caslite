@@ -41,8 +41,6 @@ class BookMarksNotifier extends StateNotifier<BookMarkList> {
   Future<void> add(String code) async =>
       storeData(state..add(BookMark(index: state.length, code: code)));
 
-  Future<void> remove(int index) async => storeData(state..removeAt(index));
-
   Future<void> removeId(String code) async =>
       storeData(state..removeWhere((element) => element.code == code));
   Future<void> replace(int before, int after) async {
