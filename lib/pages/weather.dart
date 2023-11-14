@@ -92,6 +92,15 @@ extension on Widget {
 
 const _weekDays = ["月", "火", "水", "木", "金", "土", "日"];
 
+class DirectionWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+
+}
+
 class CurrentWeatherWidget extends StatelessWidget {
   final ForecastResult result;
   const CurrentWeatherWidget(this.result, {super.key});
@@ -124,7 +133,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                   children: [
                     Column(children: [
                       Row(children: [
-                        Text(result.amedasInfo.temperature,
+                        Text(result.amedasInfo.temperature.toString(),
                             style: textTheme.displayMedium),
                         Text(" ℃", style: textTheme.bodyLarge)
                       ]),
@@ -133,7 +142,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                           child: Icon(Icons.water_drop_outlined),
                           message: "湿度",
                         ),
-                        Text(result.amedasInfo.humidity,
+                        Text(result.amedasInfo.humidity.toString(),
                             style: textTheme.titleLarge),
                         Text(" %", style: textTheme.titleLarge)
                       ])
@@ -167,11 +176,11 @@ class CurrentWeatherWidget extends StatelessWidget {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(result.amedasInfo.maxTemperature,
+                              Text(result.amedasInfo.maxTemperature.toString(),
                                   style: textTheme.titleLarge
                                       ?.copyWith(color: Colors.red)),
                               Text(" / ", style: textTheme.titleLarge),
-                              Text(result.amedasInfo.minTemperature,
+                              Text(result.amedasInfo.minTemperature.toString(),
                                   style: textTheme.titleLarge
                                       ?.copyWith(color: Colors.blue))
                             ])
