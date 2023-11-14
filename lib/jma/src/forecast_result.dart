@@ -19,6 +19,9 @@ class ForecastResult {
     final String publishingOffice = overView.publishingOffice;
     final DateTime reportDateTime = overView.reportDatetime;
     final List<DayForecast> dayForecasts = ForecastResult._parse(forecast);
+    dayForecasts.first
+      ..tempMax = amedasInfo.maxTemperature
+      ..tempMin = amedasInfo.minTemperature;
     return ForecastResult(
         city: city,
         overView: overView,
@@ -43,6 +46,8 @@ class ForecastResult {
       }
       result.add(cur);
     }
-    return result;
+    return result
+      ..sort((a, b) => a.dateTime.millisecondsSinceEpoch
+          .compareTo(b.dateTime.millisecondsSinceEpoch));
   }
 }

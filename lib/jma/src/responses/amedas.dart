@@ -2,10 +2,10 @@ import 'dart:convert';
 
 class AmedasInfo {
   final DateTime reportDateTime;
-  final String temperature;
-  final String humidity;
-  final String maxTemperature;
-  final String minTemperature;
+  final double temperature;
+  final double humidity;
+  final double maxTemperature;
+  final double minTemperature;
 
   static String endPointResolver(DateTime time) {
     // 最新amedasのエンドポイントリゾルバ
@@ -31,10 +31,10 @@ class AmedasInfo {
     final target = json[key];
     return AmedasInfo(
         reportDateTime: _parse(key),
-        temperature: target["temp"][0].toString(),
-        humidity: target["humidity"][0].toString(),
-        maxTemperature: target["maxTemp"][0].toString(),
-        minTemperature: target["minTemp"][0].toString());
+        temperature: target["temp"][0].toDouble(),
+        humidity: target["humidity"][0].toDouble(),
+        maxTemperature: target["maxTemp"][0].toDouble(),
+        minTemperature: target["minTemp"][0].toDouble());
   }
   static DateTime _parse(String key) {
     final pat = RegExp(
