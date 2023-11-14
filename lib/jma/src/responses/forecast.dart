@@ -31,6 +31,7 @@ class Forecast {
         ..dateTime = dateTime
         ..weather = Weather.fromId(weathers["weatherCodes"][index])
         ..wind = weathers["winds"][index]
+        ..wave = weathers["waves"]?[index] ?? null
         ..pops = pops
         ..tempMax = 0 //srfのtempは事実上使わない
         ..tempMin = 0;
