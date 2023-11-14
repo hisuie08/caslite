@@ -71,4 +71,6 @@ app.*.map.json
 /android/app/release
 
 # Auto generated files
-GeneratedPluguinRegistrant.*
+linux/flutter/
+macos/Flutter/
+windows/flutter/
