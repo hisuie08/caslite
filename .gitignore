@@ -70,5 +70,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/macos/Flutter
+/macos/flutter
 /linux/flutter
