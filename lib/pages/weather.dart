@@ -148,7 +148,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                 children: [
                   Column(children: [
                     Text("降水確率(%)", style: textTheme.labelLarge),
-                    Text(today.pop.toString(), style: textTheme.titleLarge)
+                    Text(today.pops.toString(), style: textTheme.titleLarge)
                   ]),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -278,7 +278,7 @@ class WeekForecastWidget extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final isDay = forecast.dateTime.hour != 17;
     String pop = "--";
-    pop = forecast.pop.toString();
+    pop = forecast.pops.toString();
     return FittedBox(
         fit: BoxFit.contain,
         child: Card(

@@ -5,18 +5,6 @@ import 'package:caslite/jma/jma_lib.dart';
 
 import 'package:http/http.dart' as http;
 
-class ForecastResult {
-  final City city;
-  final Forecast forecast;
-  final OverView overView;
-  final AmedasInfo amedasInfo;
-  ForecastResult(
-      {required this.city,
-      required this.forecast,
-      required this.overView,
-      required this.amedasInfo});
-}
-
 class JMA {
   static const baseUrl = "www.jma.go.jp";
   static const epOverview = "bosai/forecast/data/overview_forecast/";

@@ -11,3 +11,4 @@ export 'src/responses/forecast.dart';
 export 'src/responses/overview.dart';
 export 'src/utils.dart';
 export 'src/weather.dart';
+export 'src/forecast_result.dart';
