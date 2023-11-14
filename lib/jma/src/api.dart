@@ -51,10 +51,6 @@ class JMA {
     final OverView overview = await getOverview();
     final Forecast forecast = await getForecast();
     final amedasInfo = await getAmedasInfo();
-    return ForecastResult(
-        city: city,
-        forecast: forecast,
-        overView: overview,
-        amedasInfo: amedasInfo);
+    return ForecastResult.build(city, forecast, overview, amedasInfo);
   }
 }

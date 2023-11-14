@@ -98,8 +98,8 @@ class CurrentWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final isDay = result.forecast.reportDateTime.hour >= 17;
-    final today = result.forecast.weekForecast.first;
+    final isDay = result.reportDateTime.hour >= 17;
+    final today = result.dayForecasts.first;
     final card = Card(
         margin: const EdgeInsets.all(8),
         child: Column(
@@ -109,7 +109,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                   "${today.dateTime.month}/${today.dateTime.day}(${_weekDays[today.dateTime.weekday - 1]})",
                   style: textTheme.titleLarge),
               Text(
-                result.forecast.publishingOffice,
+                result.publishingOffice,
                 style: textTheme.labelLarge,
               )
             ]),
@@ -198,7 +198,7 @@ class OverViewWidget extends StatelessWidget {
             builder: (_) => AlertDialog(
                 title: Column(children: [
                   Text(
-                    result.forecast.publishingOffice,
+                    result.publishingOffice,
                     textAlign: TextAlign.center,
                   )
                 ]),
@@ -258,7 +258,7 @@ class WeekForecastWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = [];
-    for (var forecast in result.forecast.weekForecast) {
+    for (var forecast in result.dayForecasts) {
       children.add(weekForecastTile(context, forecast));
     }
     return SizedBox(
