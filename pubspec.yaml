@@ -61,7 +61,7 @@ flutter:
   fonts:
     - family: Noto Sans JP
       fonts:
-        - asset: fonts/Noto_Sans_JP/NotoSansJP-Regular.tt
+        - asset: fonts/Noto_Sans_JP/NotoSansJP-Regular.ttf
     - family: Inter Tight
       fonts:
         - asset: fonts/Inter_Tight/InterTight-Regular.ttf
