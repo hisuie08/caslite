@@ -18,7 +18,9 @@ class ForecastResult {
       for (var srf in forecast.srfForecast) {
         if (week.dateTime.day == srf.dateTime.day &&
             week.dateTime.month == srf.dateTime.month) {
-          cur = marge(srf, week);
+          cur = srf
+            ..tempMax = week.tempMax
+            ..tempMin = week.tempMin;
           break;
         }
       }
@@ -26,8 +28,4 @@ class ForecastResult {
     }
     return result;
   }
-
-  DayForecast marge(DayForecast srf, DayForecast week) => srf
-    ..tempMax = week.tempMax
-    ..tempMin = week.tempMin;
 }

@@ -189,7 +189,7 @@ class OverViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final today = result.forecast.weekForecast.first;
+    final today = result.dayForecasts.first;
 
     return GestureDetector(
         onTap: () {
