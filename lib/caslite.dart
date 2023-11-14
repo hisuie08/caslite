@@ -9,13 +9,16 @@ final String appVersion = AppInfo().package.version;
 
 class CasliteApp extends ConsumerWidget {
   const CasliteApp({super.key});
-
+  static final theme = ThemeData(
+      useMaterial3: true,
+      colorScheme: lightColorScheme,
+      fontFamily: "Noto Sans JP");
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: appName,
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      theme: theme,
+      darkTheme: theme.copyWith(colorScheme: darkColorScheme),
       themeMode: ref.watch(casliteThemeProvider).themeMode,
       home: const Home(),
     );
