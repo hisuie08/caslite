@@ -12,6 +12,7 @@ class Srf2Amedas {
   }
 }
 
+//TODO: AmedasPointクラスへの統合
 const _amedas = [
   Srf2Amedas(srf: '011000', amedas: ['11016']),
   Srf2Amedas(srf: '012010', amedas: ['12442']),
